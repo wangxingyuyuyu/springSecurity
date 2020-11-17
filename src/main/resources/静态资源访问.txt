@@ -1,0 +1,6 @@
+classpath:/META-INF/resources/
+classpath:/resources/
+classpath:/static/
+classpath:/public/
+/：当前项目的根路径
+这些路径可以直接访问 优先级从上到下
