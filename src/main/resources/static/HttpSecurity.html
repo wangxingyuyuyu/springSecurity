@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HttpSecurity Api</title>
+</head>
+<body>
+<div>
+
+    <div style="margin-left: 20%; width: 60%">
+        <div>HttpSecurity 常用方法及说明</div>
+        <div class="table-box">
+            <table style="width:699px;">
+                <thead>
+                <tr>
+                    <th style="width:165px;">方法</th>
+                    <th style="width:533px;">说明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width:165px;"><code>openidLogin()</code></td>
+                    <td style="width:533px;">用于基于 OpenId 的验证</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>headers()</code></td>
+                    <td style="width:533px;">将安全标头添加到响应</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>cors()</code></td>
+                    <td style="width:533px;">配置跨域资源共享（ CORS ）</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>sessionManagement()</code></td>
+                    <td style="width:533px;">允许配置会话管理</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>portMapper()</code></td>
+                    <td style="width:533px;">
+                        允许配置一个<code>PortMapper</code>(<code>HttpSecurity#(getSharedObject(class))</code>)，其他提供<code>SecurityConfigurer</code>的对象使用
+                        <code>PortMapper</code> 从 HTTP 重定向到 HTTPS 或者从 HTTPS 重定向到 HTTP。默认情况下，Spring Security使用一个<code>PortMapperImpl</code>映射
+                        HTTP 端口8080到 HTTPS 端口8443，HTTP 端口80到 HTTPS 端口443
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>jee()</code></td>
+                    <td style="width:533px;">配置基于容器的预认证。 在这种情况下，认证由Servlet容器管理</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>x509()</code></td>
+                    <td style="width:533px;">配置基于x509的认证</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>rememberMe</code></td>
+                    <td style="width:533px;">允许配置“记住我”的验证</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>authorizeRequests()</code></td>
+                    <td style="width:533px;">允许基于使用<code>HttpServletRequest</code>限制访问</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>requestCache()</code></td>
+                    <td style="width:533px;">允许配置请求缓存</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>exceptionHandling()</code></td>
+                    <td style="width:533px;">允许配置错误处理</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>securityContext()</code></td>
+                    <td style="width:533px;">
+                        在<code>HttpServletRequests</code>之间的<code>SecurityContextHolder</code>上设置<code>SecurityContext</code>的管理。
+                        当使用<code>WebSecurityConfigurerAdapter</code>时，这将自动应用
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>servletApi()</code></td>
+                    <td style="width:533px;">将<code>HttpServletRequest</code>方法与在其上找到的值集成到<code>SecurityContext</code>中。
+                        当使用<code>WebSecurityConfigurerAdapter</code>时，这将自动应用
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>csrf()</code></td>
+                    <td style="width:533px;">添加 CSRF 支持，使用<code>WebSecurityConfigurerAdapter</code>时，默认启用</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>logout()</code></td>
+                    <td style="width:533px;">添加退出登录支持。当使用<code>WebSecurityConfigurerAdapter</code>时，这将自动应用。默认情况是，访问URL”/
+                        logout”，使HTTP
+                        Session无效来清除用户，清除已配置的任何<code>#rememberMe()</code>身份验证，清除<code>SecurityContextHolder</code>，然后重定向到”/login?success”
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>anonymous()</code></td>
+                    <td style="width:533px;">允许配置匿名用户的表示方法。 当与<code>WebSecurityConfigurerAdapter</code>结合使用时，这将自动应用。
+                        默认情况下，匿名用户将使用<code>org.springframework.security.authentication.AnonymousAuthenticationToken</code>表示，并包含角色
+                        “ROLE_ANONYMOUS”
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>formLogin()</code></td>
+                    <td style="width:533px;">指定支持基于表单的身份验证。如果未指定<code>FormLoginConfigurer#loginPage(String)</code>，则将生成默认登录页面
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>oauth2Login()</code></td>
+                    <td style="width:533px;">根据外部OAuth 2.0或OpenID Connect 1.0提供程序配置身份验证</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>requiresChannel()</code></td>
+                    <td style="width:533px;">配置通道安全。为了使该配置有用，必须提供至少一个到所需信道的映射</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>httpBasic()</code></td>
+                    <td style="width:533px;">配置 Http Basic 验证</td>
+                </tr>
+                <tr>
+                    <td style="width:165px;"><code>addFilterAt()</code></td>
+                    <td style="width:533px;">在指定的Filter类的位置添加过滤器</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    table {
+        border-collapse: collapse;
+        display: table;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 24px;
+    }
+
+    table tr:nth-child(2n) {
+        background-color: #f7f7f7;
+    }
+
+    table tr {
+        border: 0;
+        border-top: 1px solid #ddd;
+        background-color: #fff;
+    }
+
+    table tr th {
+        font-weight: 700;
+        background-color: #eff3f5;
+    }
+
+    tbody {
+        border: 0;
+    }
+
+    table tr td, table tr th {
+        border: 1px solid #ddd;
+        font-size: 14px;
+        color: #4f4f4f;
+        line-height: 22px;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+
+</html>
