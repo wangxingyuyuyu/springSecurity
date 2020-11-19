@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,6 +20,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final AdminAuthenticationProcessingFilter adminAuthenticationProcessingFilter;
+
+    public SecurityConfig(AdminAuthenticationProcessingFilter adminAuthenticationProcessingFilter) {
+        this.adminAuthenticationProcessingFilter = adminAuthenticationProcessingFilter;
+    }
 
     // 验证路径设置
     @Override
@@ -38,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf()
                 .disable();
+        // 自定义用户名密码验证
+        http.addFilterAt(adminAuthenticationProcessingFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

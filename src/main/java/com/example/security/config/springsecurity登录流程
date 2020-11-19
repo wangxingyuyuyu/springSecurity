@@ -1,0 +1,7 @@
+1.SecurityConfig config 配置自定义过滤器 http.addFilterAt(adminAuthenticationProcessingFilter, UsernamePasswordAuthenticationFilter.class);
+2.自定义过滤器实现接口 AbstractAuthenticationProcessingFilter ; 实现接口方法attemptAuthentication()
+在此方法中获取用户输入的验证信息并构造验证token 调用验证管理器的验证方法
+3.在AuthenticationProvider实现类中重写authenticate()方法 自定义验证流程 返回new UsernamePasswordAuthenticationToken()
+4.自定义验证管理器返回token 返回到过滤器
+5.返回到AbstractAuthenticationProcessingFilter 存储验证信息 SecurityContextHolder.getContext().setAuthentication(authResult)
+6.返回到验证成功处理器 验证流程全部结束
