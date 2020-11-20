@@ -1,5 +1,6 @@
 package com.example.security.config;
 
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
@@ -26,6 +27,10 @@ public class AdminAuthenticationFailureHandler implements AuthenticationFailureH
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         logger.error(exception.toString());
-        response.getWriter().print("登录失败: " + exception.getMessage());
+        response.setContentType("text/json; charset=UTF-8");
+        JSONObject obj = new JSONObject();
+        obj.put("code", "400");
+        obj.put("msg", "登录失败: " + exception.getMessage());
+        response.getWriter().print(obj.toJSONString());
     }
 }
